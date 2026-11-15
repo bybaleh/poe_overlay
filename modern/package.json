@@ -1,0 +1,14 @@
+{
+  "name": "poe-overlay-x11",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Experimental X11 Path of Exile price overlay (PoE 1)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check main.js && node --check preload.js && node --check renderer.js"
+  },
+  "devDependencies": {
+    "electron": "45.3.2"
+  }
+}
