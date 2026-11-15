@@ -30,7 +30,7 @@ class Parser {
       }
     }
 
-    lines.splice(index, 2);
+    if(index >= 0) lines.splice(index, 2);
     this.clipboard = lines.join("\n");
   }
 
