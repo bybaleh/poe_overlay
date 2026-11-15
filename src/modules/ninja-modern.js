@@ -4,7 +4,7 @@
  */
 const https = require('https');
 const BASE='https://poe.ninja/poe1/api/economy';
-const ITEM_TYPES=['Wombgift','Corpse','Incubator','UniqueWeapon','UniqueArmour','UniqueAccessory','UniqueFlask','UniqueJewel','ForbiddenJewel','ShrineBelt','UniqueTincture','UniqueRelic','SkillGem','ImbuedGem','ClusterJewel'];
+const ITEM_TYPES=['Wombgift','Corpse','Incubator','UniqueWeapon','UniqueArmour','UniqueAccessory','UniqueFlask','UniqueJewel','ForbiddenJewel','ShrineBelt','UniqueTincture','UniqueRelic','SkillGem','ImbuedGem','ClusterJewel','Map','BlightedMap','BlightRavagedMap','UniqueMap','ValdoMap','Invitation','Memory','IncursionTemple','ScryingOrb','BaseType','Flask','Beast','Vial'];
 const EXCHANGE_TYPES=['Currency','Fragment','Runegraft','AllflameEmber','Tattoo','Omen','DjinnCoin','Ducat','EnshroudingCrystal','DivinationCard','Artifact','Oil','DeliriumOrb','Scarab','Astrolabe','Fossil','Resonator','Essence'];
 function getJSON(url) {
   return new Promise((resolve,reject)=>{
