@@ -4,8 +4,8 @@
  */
 const https = require('https');
 const BASE='https://poe.ninja/poe1/api/economy';
-const ITEM_TYPES=['UniqueWeapon','UniqueArmour','UniqueAccessory','UniqueFlask','UniqueJewel','UniqueRelic','SkillGem','ClusterJewel','Map','UniqueMap','BaseType','Beast','Vial','Invitation','Incubator','ForbiddenJewel','Flask','BlightedMap','BlightRavagedMap','ValdoMap','Memory','ImbuedGem'];
-const EXCHANGE_TYPES=['Oil','Scarab','Fossil','Resonator','Essence','DivinationCard','DeliriumOrb','Omen','Tattoo','Artifact','Runegraft','AllflameEmber'];
+const ITEM_TYPES=['Wombgift','Corpse','Incubator','UniqueWeapon','UniqueArmour','UniqueAccessory','UniqueFlask','UniqueJewel','ForbiddenJewel','ShrineBelt','UniqueTincture','UniqueRelic','SkillGem','ImbuedGem','ClusterJewel'];
+const EXCHANGE_TYPES=['Currency','Fragment','Runegraft','AllflameEmber','Tattoo','Omen','DjinnCoin','Ducat','EnshroudingCrystal','DivinationCard','Artifact','Oil','DeliriumOrb','Scarab','Astrolabe','Fossil','Resonator','Essence'];
 function getJSON(url) {
   return new Promise((resolve,reject)=>{
     const req=https.get(url,{headers:{'User-Agent':'XenonTrade-Community-Repair/0.1 (personal overlay)','Accept':'application/json'}},res=>{
