@@ -193,7 +193,7 @@ class Helpers {
   */
   static getPathOfExileLeagues() {
     return new Promise(function(resolve, reject) {
-      request("http://api.pathofexile.com/leagues?type=main", {json: true, headers: {'Connection': 'keep-alive'}})
+      request("https://poe.ninja/poe1/api/economy/leagues", {json: true})
       .then((body) => {
         var leagues = [];
         var leaguesCount = 0;
@@ -203,7 +203,7 @@ class Helpers {
           var ssf = false;
           leaguesCount++;
 
-          if(!Helpers._isSoloLeague(league)) { leagues.push(league.id); }
+          if(league.id) { leagues.push(league.id); }
 
           // When done with every league
           if(leaguesCount === body.length) {
@@ -223,7 +223,7 @@ class Helpers {
   * @return {boolean}
   */
   static _isSoloLeague(league) {
-    if(league.rules.length > 0) {
+    if(Array.isArray(league.rules) && league.rules.length > 0) {
       for(var j = 0; j < league.rules.length; j++) {
         if(league.rules[j].name === "Solo") {
           return true;
@@ -242,7 +242,7 @@ class Helpers {
   static createConfig() {
     var config = new Config({
       defaults: {
-        league: "Delve",
+        league: "Standard",
         focusPathOfExile: false,
         autoMinimize: false,
         hideMenu: false,
@@ -299,6 +299,7 @@ class Helpers {
       config.set("hideMenu", false);
     }
 
+    if(config.get("league") === "Delve" || config.get("league") === "Hardcore Delve") config.set("league", "Standard");
     return config;
   }
 
