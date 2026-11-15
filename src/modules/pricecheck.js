@@ -40,6 +40,7 @@ class Pricecheck {
         return Pricecheck._handleNinjaPrice(parser, itemArray[0]);
       })
       .catch((error) => {
+        new TextEntry("Price unavailable", String(error.message || error), {icon: "fa-exclamation-triangle yellow", timeout: 10}).add();
         return GUI.flashIcon("fas fa-exclamation-circle yellow");
       });
     } else {
