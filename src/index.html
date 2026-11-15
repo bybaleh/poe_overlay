@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>XenonTrade</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/attr-classes.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="container">
+    <div class="menu draggable">
+      <div class="row">
+        <div class="left">
+          <div class="button" data-button="settings"><i class="fas fa-cog grey"></i></div>
+          <div class="button" data-button="update"><i class="fas fa-sync-alt grey"></i></div>
+          <div class="button" data-button="close-all"><i class="fas fa-times-circle grey"></i></div>
+          <div class="button" data-button="status" style="display: none"><i class="fas fa-exclamation-circle red"></i></div>
+        </div>
+        <div class="middle"></div>
+        <div class="right">
+          <div class="button" data-button="lock"><i class="fas fa-unlock grey"></i></div>
+          <div class="button" data-button="minimize"><i class="fas fa-window-minimize grey"></i></div>
+          <div class="button" data-button="close"><i class="fas fa-window-close grey"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="entries"></div>
+  </div>
+
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script type="text/javascript" src="lib/jquery.peity.min.js"></script>
+  <script type="text/javascript">
+  $.fn.peity.defaults.line = {
+    delimiter: ",",
+    fill: "#404c60",
+    height: 16,
+    max: null,
+    min: 0,
+    stroke: "#748199",
+    strokeWidth: 1,
+    width: 35
+  }
+  </script>
+
+  <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
