@@ -12,7 +12,7 @@ const log = require('electron-log');
 
 const Config = require("electron-store");
 const Helpers = require("./modules/helpers.js");
-const NinjaAPI = require("poe-ninja-api-manager");
+const NinjaAPI = require("./modules/ninja-modern.js");
 const Templates = require("./modules/templates.js");
 const Pricecheck = require("./modules/pricecheck.js");
 const AutoMinimize = require("./modules/auto-minimize.js");
