@@ -36,8 +36,8 @@ class CurrencyEntry extends PriceCheckEntry {
   }
 
   _buildReplacements() {
-    var stackSize = this.parser.getStackSize();
-    var currencyDetails = ninjaAPI.getCurrencyDetails(this.item.currencyTypeName);
+    var stackSize = Number(this.parser.getStackSize()) || 1;
+    var currencyDetails = ninjaAPI.getCurrencyDetails(this.item.currencyTypeName) || {icon: ""};
 
     var pay = {
       trend: this._formatTrendData(this.item.paySparkLine),
@@ -54,7 +54,7 @@ class CurrencyEntry extends PriceCheckEntry {
     };
 
     // Set the receive value and calculate others
-    if(this.item.receive !== null) {
+    if(this.item.receive && Number(this.item.receive.value) > 0) {
       receive.value = this.item.receive.value;
       receive.calculated = receive.value * stackSize;
       receive.confidence = this._getConfidenceColor(this.item.receive.count);
@@ -62,7 +62,7 @@ class CurrencyEntry extends PriceCheckEntry {
     }
 
     // Set the pay value
-    if(this.item.pay !== null) {
+    if(this.item.pay && Number(this.item.pay.value) > 0) {
       pay.value = this.item.pay.value;
       pay.confidence = this._getConfidenceColor(this.item.pay.count);
     }

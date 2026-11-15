@@ -46,7 +46,7 @@ class ItemEntry extends PriceCheckEntry {
     var info = "";
 
     // Append variant to item name if it is a variant, not on maps
-    if(this.item.variant !== null && this.item.variant !== "Atlas2") {
+    if(this.item.variant && this.item.variant !== "Atlas2") {
       info += this.item.variant + " ";
     }
 
@@ -56,7 +56,7 @@ class ItemEntry extends PriceCheckEntry {
     }
 
     // Enable switch button if exalted value is > 1
-    if(this.item.exaltedValue >= 1) {
+    if(Number.isFinite(Number(this.item.divineValue)) && Number(this.item.divineValue) >= 1) {
       this.switchable = true;
     }
 
@@ -65,9 +65,9 @@ class ItemEntry extends PriceCheckEntry {
       { find: "item-info", replace: info },
       { find: "item-icon", replace: this.item.icon },
       { find: "item-value-chaos", replace: this.item.chaosValue },
-      { find: "item-value-exalted", replace: this.item.exaltedValue },
+      { find: "item-value-divine", replace: this.item.divineValue },
       { find: "chaos-icon", replace: CurrencyIcons["Chaos Orb"] },
-      { find: "exalted-icon", replace: CurrencyIcons["Exalted Orb"] },
+      { find: "divine-icon", replace: CurrencyIcons["Divine Orb"] },
       { find: "conf-color", replace: confidence },
       { find: "trend", replace: trend }
     ];
