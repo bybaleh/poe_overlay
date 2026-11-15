@@ -65,8 +65,14 @@ async function poll(){
   const wid=await xcmd('getactivewindow');
   const name=wid?await xcmd('getwindowname',wid):'';
   if(name==='Path of Exile')lastFocus=Date.now();
-  const text=clipboard.readText();
-  if(text!==lastText){lastText=text;if(Date.now()-lastFocus<2000 && text.startsWith('Rarity: '))inspect(text);}
+  const text=await clipboard.readText();
+  if(typeof text!=='string')return;
+  if(text!==lastText){
+   lastText=text;
+   if(Date.now()-lastFocus<2000 && text.startsWith('Rarity: '))await inspect(text);
+  }
+ }catch(error){
+  console.error('[PoE Overlay] Clipboard polling failed:',error);
  }finally{scanning=false;}
 }
 function create(){
@@ -80,9 +86,12 @@ ipcMain.handle('league:get',()=>league);
 ipcMain.handle('league:set',async(_e,value)=>{const leagues=await apiList();if(!leagues.some(x=>x.id===value))throw new Error('Invalid league');league=value;return league;});
 ipcMain.handle('window:hide',()=>mainWindow.hide());
 ipcMain.handle('window:close',()=>app.quit());
-ipcMain.handle('manual:check',(_e,text)=>inspect(String(text||'')));
+ipcMain.handle('manual:check',async(_e,text)=>{
+ if(typeof text!=='string')return;
+ try {await inspect(text);} catch(error){console.error('[PoE Overlay] Manual check failed:',error);}
+});
 app.whenReady().then(()=>{
  if(process.platform!=='linux'||process.env.XDG_SESSION_TYPE==='wayland')console.error('This preview is intended for Linux X11');
- create();setInterval(poll,300);
-});
+ create();setInterval(()=>{void poll().catch(error=>console.error('[PoE Overlay] Polling error:',error));},300);
+}).catch(error=>{console.error('[PoE Overlay] Startup failed:',error);app.quit();});
 app.on('window-all-closed',()=>app.quit());
